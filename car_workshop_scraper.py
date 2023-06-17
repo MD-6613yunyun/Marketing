@@ -8,8 +8,9 @@ import csv
 base_url = 'https://www.automobiledirectory.com.mm/vehicle-spare-parts'
 base_url = 'https://www.automobiledirectory.com.mm/vehicle-spare-parts/p:'
 base_url = "https://www.automobiledirectory.com.mm/k:Car+Spa+%2526+Painting+Service/p:"
+base_url = "https://www.automobiledirectory.com.mm/listing/body-paint-workshops/p:"
 # set the num of page
-num_pages = 21
+num_pages = 23
 
 # Create an empty list to store the movie data
 shops = []
@@ -19,7 +20,6 @@ for page_no in range(2,num_pages+1):
     # for page in range(2, num_pages + 1):
     # Construct the URL for the current page
     url = base_url + str(page_no)
-
     # Send a request to the website and get the HTML response
     response = requests.get(url)
 
@@ -64,9 +64,9 @@ for page_no in range(2,num_pages+1):
         # print(address[1].text.strip().replace("\n"," ").split(",,")[1].strip().split(",")[1].strip())
         # Add the movie data to the list
         shops.append({'Dealer Name': name,'Category':category,'Ward':ward,'Township':township,'City':city,'Phone':phone})
-
 # Save the movie data to a CSV file
-with open('car_spa_&_services_shop.csv', 'a', newline='',encoding="utf-8") as csvfile:
+file_path = "D:\\MDMM Test files\\Marketing\\car_paintings_shop.csv"
+with open(file_path, 'a', newline='',encoding="utf-8") as csvfile:
     writer = csv.DictWriter(csvfile, fieldnames=['Dealer Name','Category','Ward','Township','City','Phone'])
     writer.writeheader()
     writer.writerows(shops)
